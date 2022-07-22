@@ -1,9 +1,13 @@
 from django.urls import path, include
 
+from rest_framework import routers
+
 
 app_name = 'users'
 
+router = routers.DefaultRouter()
+
 urlpatterns = [
     path('', include('djoser.urls')),
-    path('', include('djoser.urls.authtoken')),
+    path('auth/', include('djoser.urls.authtoken')),
 ]
