@@ -60,6 +60,6 @@ class SubscribeModel(models.Model):
         constraints = [
             models.UniqueConstraint(
                 fields=['author', 'follower'],
-                name='unique follow',
+                name='unique_subsscribe',
             )
         ]
