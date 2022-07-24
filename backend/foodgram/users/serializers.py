@@ -18,6 +18,7 @@ class CustomUserSerializer(UserSerializer):
             'first_name',
             'last_name',
             'is_subscribed',
+            'password'
         )
         extra_kwargs = {'password': {'write_only': True}}
 
