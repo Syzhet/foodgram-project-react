@@ -17,3 +17,10 @@ class TagSerializer(ModelSerializer):
         model = Tag
         fields = ['id', 'name', 'color', 'slug']
         read_only_fields = ('__all__',)
+
+
+class IngredientSerializer(ModelSerializer):
+    class Meta:
+        model = Ingredient
+        fields = ['id', 'name', 'measurement_unit']
+        read_only_fields = ('__all__',)

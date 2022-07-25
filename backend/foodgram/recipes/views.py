@@ -10,11 +10,21 @@ from .models import (
     Favourites,
     ShoppingList
 )
-from .serializers import TagSerializer
+from .serializers import (
+    TagSerializer,
+    IngredientSerializer,
+)
 
 
 class TagViewSet(ReadOnlyModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+    pagination_class = None
+    permission_classes = [AllowAny]
+
+
+class IngredientViewSet(ReadOnlyModelViewSet):
+    queryset = Ingredient.objects.all()
+    serializer_class = IngredientSerializer
     pagination_class = None
     permission_classes = [AllowAny]
