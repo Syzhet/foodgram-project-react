@@ -1,5 +1,6 @@
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.permissions import AllowAny
+from rest_framework import filters
 
 from .models import (
     Tag,
@@ -28,3 +29,5 @@ class IngredientViewSet(ReadOnlyModelViewSet):
     serializer_class = IngredientSerializer
     pagination_class = None
     permission_classes = [AllowAny]
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name',)
