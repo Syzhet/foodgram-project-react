@@ -1,7 +1,8 @@
-from django.contrib.admin import register
+from ast import Sub
+from django.contrib.admin import register, ModelAdmin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import CustomUser
+from .models import CustomUser,SubscribeModel
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 
 
@@ -35,3 +36,12 @@ class UserAdmin(UserAdmin):
     list_display_links = ('id', 'email')
     search_fields = ('email', 'username', 'first_name', 'last_name',)
     ordering = ('id', 'email', 'username',)
+
+
+@register(SubscribeModel)
+class SubscribeAdmin(ModelAdmin):
+    list_display = ('id', 'author', 'follower')
+    list_filter = ('author',)
+    list_display_links = ('id', 'author')
+    search_fields = ('id', 'author', 'follower')
+    ordering = ('id',)
