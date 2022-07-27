@@ -1,8 +1,11 @@
+import csv
+from django.http import HttpResponse
+
 from rest_framework.viewsets import (
     ReadOnlyModelViewSet,
     ModelViewSet,
 )
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -10,6 +13,7 @@ from rest_framework import status
 from rest_framework import permissions
 
 from .models import (
+    IngredientRecipe,
     Tag,
     Ingredient,
     Recipe,
@@ -107,6 +111,45 @@ class RecipeViewSet(ModelViewSet):
             ERROR_MESSAGE_NO_FAVOR,
             status=status.HTTP_400_BAD_REQUEST
         )
+
+    @action(
+        detail=False,
+        methods=['get'],
+        permission_classes=[IsAuthenticated]
+    )
+    def download_shopping_cart(self, request):
+        ingredients = IngredientRecipe.objects.filter(
+            recipe__shoppinglist__user=request.user
+        ).values_list(
+            'ingredient__name',
+            'ingredient__measurement_unit',
+            'amount'
+        )
+        shoplist = {}
+        for ingredient in ingredients:
+            if ingredient[0] in shoplist:
+                shoplist[ingredient[0]]['amount'] += ingredient[2]
+            else:
+                shoplist[ingredient[0]] = {
+                    'measurement_unit': ingredient[1],
+                    'amount': ingredient[2]
+                }
+        response = HttpResponse(
+            content_type='text/csv',
+        )
+        writer = csv.writer(response)
+        writer.writerow(['number', 'name', 'measurement_unit', 'amount'])
+        number = 1
+        for name, meas_amount in shoplist.items():
+            writer.writerow(
+                [
+                    f'{number}', f'{name}',
+                    f'{meas_amount["measurement_unit"]}',
+                    f'{meas_amount["amount"]}'
+                ]
+            )
+            number += 1
+        return response
 
     @action(
         detail=True,

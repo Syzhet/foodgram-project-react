@@ -140,6 +140,9 @@ class IngredientRecipe(models.Model):
         ]
     )
 
+    def __str__(self):
+        return f'{self.ingredient} {self.recipe}'
+
     class Meta:
         verbose_name = 'Количество ингредиента в рецепте'
         verbose_name = 'Количество ингредиентов в рецепте'

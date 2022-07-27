@@ -213,3 +213,8 @@ class ShoppingListSerializer(ModelSerializer):
     class Meta:
         model = ShoppingList
         fields = ('user', 'recipe')
+
+    def to_representation(self, instance):
+        request = self.context.get('request')
+        context = {'request': request}
+        return BaseRecipeDataSerializer(instance.recipe, context=context).data
