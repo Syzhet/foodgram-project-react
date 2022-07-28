@@ -171,7 +171,8 @@ class RecipeViewSet(ModelViewSet):
                 ERROR_MESSAGE_SHOP_EXISTS,
                 status=status.HTTP_400_BAD_REQUEST
             )
-        serializer = self.serializer_class(data=data)
+        context = {'request': request}
+        serializer = self.serializer_class(data=data, context=context)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
