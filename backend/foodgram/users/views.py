@@ -28,7 +28,7 @@ class SubscribeListViewSet(
     pagination_class = CustomLimitPaginator
 
     def get_queryset(self):
-        return CustomUser.objects.filter(follower__author=self.request.user)
+        return CustomUser.objects.filter(author__follower=self.request.user)
 
 
 class SubscribeViewSet(

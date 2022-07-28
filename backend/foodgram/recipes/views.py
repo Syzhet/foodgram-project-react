@@ -86,7 +86,8 @@ class RecipeViewSet(ModelViewSet):
                 ERROR_MESSAGE_FAVOR_EXISTS,
                 status=status.HTTP_400_BAD_REQUEST
             )
-        serializer = self.serializer_class(data=data)
+        context = {'request': request}
+        serializer = self.serializer_class(data=data, context=context)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -193,6 +194,6 @@ class RecipeViewSet(ModelViewSet):
             shopping_cart.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(
-            ERROR_MESSAGE_NO_FAVOR,
+            ERROR_MESSAGE_NO_SHOP_CART,
             status=status.HTTP_400_BAD_REQUEST
         )
