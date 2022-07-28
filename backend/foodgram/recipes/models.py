@@ -1,6 +1,6 @@
 from django.db import models
 from django.core import validators
-# from django.urls import reverse
+from django.urls import reverse
 
 from users.models import CustomUser
 
@@ -24,9 +24,6 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
-    # def get_absolute_url(self):
-    #     return reverse('', kwargs={'pk': self.pk})  # здесь необходимо уточнить имя URL
-
 
 class Ingredient(models.Model):
     name = models.CharField('Название ингредиента', max_length=200)
@@ -45,9 +42,6 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return self.name
-
-    # def get_absolute_url(self):
-    #     return reverse('', kwargs={'pk': self.pk})  # здесь необходимо уточнить имя URL
 
 
 class Recipe(models.Model):
@@ -96,8 +90,8 @@ class Recipe(models.Model):
     def __str__(self):
         return self.name
 
-    # def get_absolute_url(self):
-    #     return reverse('', kwargs={'pk': self.pk})  # здесь необходимо уточнить имя URL
+    def get_absolute_url(self):
+        return reverse('recipes:recipes-detail', kwargs={'pk': self.pk})
 
 
 class TagRecipe(models.Model):
