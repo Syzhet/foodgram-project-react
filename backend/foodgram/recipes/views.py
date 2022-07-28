@@ -68,33 +68,28 @@ class RecipeViewSet(ModelViewSet):
             return RecipeListSerializer
         return RecipeSerializer
 
-    @action(
-        detail=True,
-        methods=['post'],
-        serializer_class=FavouritesSerializer,
-        permission_classes=[permissions.IsAuthenticated]
-    )
-    def favorite(self, request, pk):
+    @staticmethod
+    def create_method(request, pk, model, message_exist, serializer):
         if not Recipe.objects.filter(id=pk).exists():
             return Response(
                 ERROR_MESSAGE_NOT_RECIPE,
                 status=status.HTTP_400_BAD_REQUEST
             )
         data = {'user': request.user.id, 'recipe': pk}
-        if Favourites.objects.filter(**data).exists():
+        if model.objects.filter(**data).exists():
             return Response(
-                ERROR_MESSAGE_FAVOR_EXISTS,
+                message_exist,
                 status=status.HTTP_400_BAD_REQUEST
             )
         context = {'request': request}
-        serializer = self.serializer_class(data=data, context=context)
+        serializer = serializer(data=data, context=context)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    @favorite.mapping.delete
-    def delete_favoutite(self, request, pk):
+    @staticmethod
+    def delete_method(request, pk, model, message):
         user = request.user
         if not Recipe.objects.filter(id=pk).exists():
             return Response(
@@ -102,16 +97,40 @@ class RecipeViewSet(ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
         recipe = Recipe.objects.get(id=pk)
-        favour = Favourites.objects.filter(
+        obj = model.objects.filter(
             user=user,
             recipe=recipe
         )
-        if favour.exists():
-            favour.delete()
+        if obj.exists():
+            obj.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(
-            ERROR_MESSAGE_NO_FAVOR,
+            message,
             status=status.HTTP_400_BAD_REQUEST
+        )
+
+    @action(
+        detail=True,
+        methods=['post'],
+        serializer_class=FavouritesSerializer,
+        permission_classes=[permissions.IsAuthenticated]
+    )
+    def favorite(self, request, pk):
+        return self.create_method(
+            request,
+            pk,
+            Favourites,
+            ERROR_MESSAGE_FAVOR_EXISTS,
+            self.serializer_class
+        )
+
+    @favorite.mapping.delete
+    def delete_favoutite(self, request, pk):
+        return self.delete_method(
+            request,
+            pk,
+            Favourites,
+            ERROR_MESSAGE_NO_FAVOR
         )
 
     @action(
@@ -160,41 +179,19 @@ class RecipeViewSet(ModelViewSet):
         permission_classes=[permissions.IsAuthenticated]
     )
     def shopping_cart(self, request, pk):
-        if not Recipe.objects.filter(id=pk).exists():
-            return Response(
-                ERROR_MESSAGE_NOT_RECIPE,
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        data = {'user': request.user.id, 'recipe': pk}
-        if ShoppingList.objects.filter(**data).exists():
-            return Response(
-                ERROR_MESSAGE_SHOP_EXISTS,
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        context = {'request': request}
-        serializer = self.serializer_class(data=data, context=context)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return self.create_method(
+            request,
+            pk,
+            ShoppingList,
+            ERROR_MESSAGE_SHOP_EXISTS,
+            self.serializer_class
+        )
 
     @shopping_cart.mapping.delete
     def delete_shopping_cart(self, request, pk):
-        user = request.user
-        if not Recipe.objects.filter(id=pk).exists():
-            return Response(
-                ERROR_MESSAGE_NOT_RECIPE,
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        recipe = Recipe.objects.get(id=pk)
-        shopping_cart = ShoppingList.objects.filter(
-            user=user,
-            recipe=recipe
-        )
-        if shopping_cart.exists():
-            shopping_cart.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        return Response(
-            ERROR_MESSAGE_NO_SHOP_CART,
-            status=status.HTTP_400_BAD_REQUEST
+        return self.delete_method(
+            request,
+            pk,
+            ShoppingList,
+            ERROR_MESSAGE_NO_SHOP_CART
         )
