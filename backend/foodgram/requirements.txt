@@ -14,6 +14,7 @@ django-templated-mail==1.1.1
 djangorestframework==3.12.4
 djoser==2.1.0
 flake8==4.0.1
+gunicorn==20.0.4
 idna==3.3
 importlib-metadata==4.12.0
 itypes==1.2.0

@@ -11,9 +11,9 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -86,7 +86,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
@@ -95,8 +95,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-STATIC_URL = '/static/'
 
 
 EMAIL_HOST = 'smtp.yandex.ru'
@@ -140,6 +138,8 @@ DJOSER = {
     },
 }
 
+STATIC_URL = '/backend_static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'backend_static')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'backend_media')
+MEDIA_URL = '/backend_media/'
