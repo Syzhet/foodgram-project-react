@@ -1,10 +1,10 @@
-version: '3.8'
+version: '3.3'
 
 services:
   db:
     image: postgres:13.0-alpine
     volumes:
-      - /var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env
 
@@ -22,7 +22,7 @@ services:
   nginx:
     image: nginx:1.19.3
     ports:
-      - 80:80
+      - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ../frontend/build:/usr/share/nginx/html/
@@ -34,7 +34,8 @@ services:
       - frontend
 
   frontend:
-    image: syzhet/frontend:latest
+    build:
+      context: ../frontend/
     volumes:
       - ../frontend/:/app/result_build/
 
