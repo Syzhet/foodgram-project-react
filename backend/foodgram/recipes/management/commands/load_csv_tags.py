@@ -4,16 +4,16 @@ from pathlib import Path
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db import IntegrityError
-from recipes.models import Ingredient
+from recipes.models import Tag
 
 
 class Command(BaseCommand):
-    help = ('Класс для автоматического заполненеия данных об ингредиентах,'
+    help = ('Класс для автоматического заполненеия данных о тегах'
             'Из CSV файла расположенного в папке data на уровне проекта'
             )
 
     def handle(self, *args, **options):
-        path_to = Path(settings.BASE_DIR, 'data', 'ingredients.csv')
+        path_to = Path(settings.BASE_DIR, 'data', 'tags.csv')
         try:
             with open(path_to, 'r', encoding='UTF-8') as f:
                 data = csv.DictReader(f, delimiter=',',
@@ -23,9 +23,10 @@ class Command(BaseCommand):
                     has_rows = True
                     try:
                         row_list = list(row.values())
-                        Ingredient.objects.get_or_create(
+                        Tag.objects.get_or_create(
                             name=row_list[0],
-                            measurement_unit=row_list[1]
+                            color=row_list[1],
+                            slug=row_list[2]
                         )
                     except IntegrityError:
                         print(row)
