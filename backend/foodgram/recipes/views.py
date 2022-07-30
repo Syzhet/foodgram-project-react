@@ -1,14 +1,15 @@
 import csv
 
 from django.http import HttpResponse
-from rest_framework import filters, permissions, status
+from rest_framework import permissions, status
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
+
 from users.pagination import CustomLimitPaginator
 
-from .filters import RecipeFilter
+from .filters import RecipeFilter, SearchIngredientName
 from .models import (Favourites, Ingredient, IngredientRecipe, Recipe,
                      ShoppingList, Tag)
 from .permissions import AuthorOrAuthOrRead
@@ -35,7 +36,7 @@ class IngredientViewSet(ReadOnlyModelViewSet):
     serializer_class = IngredientSerializer
     pagination_class = None
     permission_classes = [AllowAny]
-    filter_backends = (filters.SearchFilter,)
+    filter_backends = (SearchIngredientName,)
     search_fields = ('^name',)
 
 

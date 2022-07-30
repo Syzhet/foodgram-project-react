@@ -3,6 +3,7 @@ from rest_framework.serializers import (IntegerField, ModelSerializer,
                                         PrimaryKeyRelatedField, ReadOnlyField,
                                         SerializerMethodField)
 from rest_framework.validators import ValidationError
+
 from users.serializers import CustomUserSerializer
 
 from .addserializers import BaseRecipeDataSerializer
@@ -118,7 +119,6 @@ class RecipeSerializer(ModelSerializer):
 
     tags = PrimaryKeyRelatedField(queryset=Tag.objects.all(), many=True)
     ingredients = AddInRecipeIngredientSerializer(many=True)
-    # author = CustomUserSerializer(read_only=True)
     image = Base64ImageField()
     cooking_time = IntegerField()
 
@@ -126,7 +126,6 @@ class RecipeSerializer(ModelSerializer):
         model = Recipe
         fields = (
             'id',
-            # 'author',
             'ingredients',
             'tags',
             'image',

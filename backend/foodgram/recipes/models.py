@@ -1,6 +1,7 @@
 from django.core import validators
 from django.db import models
 from django.urls import reverse
+
 from users.models import CustomUser
 
 MIN_TIME_LIMIT = 'Время приготовления не может быть меньше 1-й минуты'
