@@ -118,7 +118,7 @@ class RecipeSerializer(ModelSerializer):
 
     tags = PrimaryKeyRelatedField(queryset=Tag.objects.all(), many=True)
     ingredients = AddInRecipeIngredientSerializer(many=True)
-    author = CustomUserSerializer(read_only=True)
+    # author = CustomUserSerializer(read_only=True)
     image = Base64ImageField()
     cooking_time = IntegerField()
 
@@ -126,7 +126,7 @@ class RecipeSerializer(ModelSerializer):
         model = Recipe
         fields = (
             'id',
-            'author',
+            # 'author',
             'ingredients',
             'tags',
             'image',
