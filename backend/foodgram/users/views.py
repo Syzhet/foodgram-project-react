@@ -1,18 +1,13 @@
 from django.shortcuts import get_object_or_404
-
-from rest_framework.viewsets import GenericViewSet
-from rest_framework.mixins import (
-    ListModelMixin,
-    CreateModelMixin,
-    DestroyModelMixin
-)
-from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
+                                   ListModelMixin)
+from rest_framework.response import Response
+from rest_framework.viewsets import GenericViewSet
 
-from .models import SubscribeModel, CustomUser
-from .serializers import SubscribeSerializer
+from .models import CustomUser, SubscribeModel
 from .pagination import CustomLimitPaginator
-
+from .serializers import SubscribeSerializer
 
 ERROR_MESSAGE_SUBSCRIBE_SELF = 'errors: Нельзя поодписаться на себя'
 ERROR_MESSAGE_SUBSCRIBE_EXISTS = 'errors: Вы уже подписаны на пользователя'

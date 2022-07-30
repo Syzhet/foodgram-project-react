@@ -1,10 +1,9 @@
 from django.contrib.auth.hashers import make_password
-
-from rest_framework import serializers
 from djoser.serializers import UserSerializer
+from recipes.addserializers import BaseRecipeDataSerializer
+from rest_framework import serializers
 
 from .models import CustomUser, SubscribeModel
-from recipes.addserializers import BaseRecipeDataSerializer
 
 
 class CustomUserCreateSerializer(UserSerializer):
@@ -49,8 +48,7 @@ class CustomUserSerializer(UserSerializer):
         if user.is_anonymous:
             return False
         return SubscribeModel.objects.filter(
-            author=obj.id, follower=user
-            ).exists()
+            author=obj.id, follower=user).exists()
 
     def create(self, validated_data):
         validated_data['password'] = (

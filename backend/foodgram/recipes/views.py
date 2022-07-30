@@ -1,38 +1,20 @@
 import csv
 
 from django.http import HttpResponse
-
-from rest_framework.viewsets import (
-    ReadOnlyModelViewSet,
-    ModelViewSet,
-)
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework import filters
+from rest_framework import filters, permissions, status
 from rest_framework.decorators import action
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework import status
-from rest_framework import permissions
-
-from .models import (
-    IngredientRecipe,
-    Tag,
-    Ingredient,
-    Recipe,
-    Favourites,
-    ShoppingList
-)
-from .serializers import (
-    TagSerializer,
-    IngredientSerializer,
-    FavouritesSerializer,
-    RecipeListSerializer,
-    RecipeSerializer,
-    ShoppingListSerializer
-)
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from users.pagination import CustomLimitPaginator
-from .permissions import AuthorOrAuthOrRead
-from .filters import RecipeFilter
 
+from .filters import RecipeFilter
+from .models import (Favourites, Ingredient, IngredientRecipe, Recipe,
+                     ShoppingList, Tag)
+from .permissions import AuthorOrAuthOrRead
+from .serializers import (FavouritesSerializer, IngredientSerializer,
+                          RecipeListSerializer, RecipeSerializer,
+                          ShoppingListSerializer, TagSerializer)
 
 ERROR_MESSAGE_NOT_RECIPE = 'errors: Такого рецепта не существует'
 ERROR_MESSAGE_FAVOR_EXISTS = 'errors: Рецепт уже добавлен в избранное'

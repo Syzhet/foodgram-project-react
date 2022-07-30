@@ -1,9 +1,7 @@
-from django.db import models
 from django.core import validators
+from django.db import models
 from django.urls import reverse
-
 from users.models import CustomUser
-
 
 MIN_TIME_LIMIT = 'Время приготовления не может быть меньше 1-й минуты'
 VALUE_MIN_TIME_LIMIT = 1
@@ -77,8 +75,7 @@ class Recipe(models.Model):
         'Время приготовления блюда',
         validators=[validators.MinValueValidator(
             limit_value=VALUE_MIN_TIME_LIMIT,
-            message=MIN_TIME_LIMIT
-            )
+            message=MIN_TIME_LIMIT)
         ]
     )
 
@@ -129,8 +126,7 @@ class IngredientRecipe(models.Model):
         'Количество ингредиента',
         validators=[validators.MinValueValidator(
             limit_value=VALUE_MIN_AMOUNT_LIMIT,
-            message=MIN_AMOUNT_LIMIT
-            )
+            message=MIN_AMOUNT_LIMIT)
         ]
     )
 

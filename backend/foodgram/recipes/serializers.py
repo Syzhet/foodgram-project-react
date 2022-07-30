@@ -1,26 +1,13 @@
-from rest_framework.validators import ValidationError
-from rest_framework.serializers import (
-    ModelSerializer,
-    SerializerMethodField,
-    ReadOnlyField,
-    PrimaryKeyRelatedField,
-    IntegerField
-)
 from drf_extra_fields.fields import Base64ImageField
-
-
+from rest_framework.serializers import (IntegerField, ModelSerializer,
+                                        PrimaryKeyRelatedField, ReadOnlyField,
+                                        SerializerMethodField)
+from rest_framework.validators import ValidationError
 from users.serializers import CustomUserSerializer
 
-from .models import (
-    Tag,
-    Ingredient,
-    Recipe,
-    IngredientRecipe,
-    Favourites,
-    ShoppingList
-)
 from .addserializers import BaseRecipeDataSerializer
-
+from .models import (Favourites, Ingredient, IngredientRecipe, Recipe,
+                     ShoppingList, Tag)
 
 ERROR_MESSAGE_FOR_ADD_INGREDIENT = ('Нельзя повторно добавлять '
                                     'ранее добавленный ингредиент')
