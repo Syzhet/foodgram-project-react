@@ -36,7 +36,7 @@ services:
   frontend:
     image: syzhet/frontend:latest
     volumes:
-      - ../frontend/:/code/result_build/
+      - ../frontend/:/app/result_build/
 
 volumes:
   postgres_data:
