@@ -2,7 +2,7 @@ from django_filters.rest_framework import (AllValuesMultipleFilter,
                                            BooleanFilter, CharFilter,
                                            FilterSet)
 
-from .models import Recipe
+from .models import Ingredient, Recipe
 
 
 class RecipeFilter(FilterSet):
@@ -33,3 +33,7 @@ class SearchIngredientName(FilterSet):
     name = CharFilter(
         field_name='name', lookup_expr='startswith'
     )
+
+    class Meta:
+        model = Ingredient
+        fields = ('name',)
