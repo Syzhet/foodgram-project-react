@@ -34,8 +34,7 @@ services:
       - frontend
 
   frontend:
-    build:
-      context: ../frontend/
+    image: syzhet/frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
 

@@ -46,6 +46,12 @@ jobs:
           context: ./backend/foodgram/
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/backend:latest
+      - name: Push Frontend to Docker
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          context: ./frontend/
+          tags: ${{ secrets.DOCKER_USERNAME }}/frontend:latest
   deploy:
     runs-on: ubuntu-latest
     needs: build_and_push_to_docker_hub
@@ -60,6 +66,7 @@ jobs:
           script: |
             sudo docker-compose stop
             sudo docker-compose rm backend
+            sudo docker-compose rm frontend
             rm .env
             touch .env
             echo DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }} >> .env
