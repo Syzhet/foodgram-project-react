@@ -1,6 +1,6 @@
 from django_filters.rest_framework import (AllValuesMultipleFilter,
-                                           BooleanFilter, FilterSet)
-from rest_framework.filters import SearchFilter
+                                           BooleanFilter, CharFilter,
+                                           FilterSet)
 
 from .models import Recipe
 
@@ -29,5 +29,7 @@ class RecipeFilter(FilterSet):
         return queryset
 
 
-class SearchIngredientName(SearchFilter):
-    search_param = 'name'
+class SearchIngredientName(FilterSet):
+    name = CharFilter(
+        field_name='name', lookup_expr='startswith'
+    )
