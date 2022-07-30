@@ -9,7 +9,7 @@ from recipes.models import Ingredient
 
 class Command(BaseCommand):
     help = ('Класс для автоматического заполненеия данных об ингредиентах,'
-            'Из CSV файла расположенного в папке fodata на уровне проекта'
+            'Из CSV файла расположенного в папке data на уровне проекта'
             )
 
     def handle(self, *args, **options):
