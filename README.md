@@ -1,4 +1,4 @@
-![Build Status](https://github.com/Syzhet/foodgram-project-react/actions/workflows/Django-app%20workflow/badge.svg)](https://github.com/Syzhet/foodgram-project-react/actions/workflows/foodgram.yml)
+![Build Status](https://github.com/Syzhet/foodgram-project-react/actions/workflows/foodgram.yml/badge.svg)](https://github.com/Syzhet/foodgram-project-react/actions/workflows/foodgram.yml)
 
 ## Стек технологий 
 
