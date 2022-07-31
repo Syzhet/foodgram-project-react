@@ -97,6 +97,6 @@ http://84.201.176.57/api/docs/
 
 ## Авторы проекта
 
-[Ионов А.В.](https://github.com/Syzhet) - Python разработчик. Разработал backend для проекта.
-[Яндекс.Практикум](https://practicum.yandex.ru/) Фронтенд для сервиса Foodgram.
+- [Ионов А.В.](https://github.com/Syzhet) - Python разработчик. Разработал backend для проекта.
+- [Яндекс.Практикум](https://practicum.yandex.ru/) Фронтенд для сервиса Foodgram.
 
