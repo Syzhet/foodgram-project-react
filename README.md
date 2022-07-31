@@ -20,7 +20,7 @@ Foodgram это онлайн-ресурс для публикации рецеп
 git clone https://github.com/Syzhet/foodgram-project-react.git
 cd foodgram-project-react
 ```
-Cоздать и активировать виртуальное окружение (проект разрабатывался на версии [python-3.8.2](https://www.python.org/downloads/release/python-382/)):
+Cоздать и активировать виртуальное окружение:
 ```sh
 python3 -m venv venv
 source venv/bin/activate

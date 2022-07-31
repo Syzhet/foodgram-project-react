@@ -6,7 +6,6 @@ from .views import SubscribeListViewSet, SubscribeViewSet
 app_name = 'users'
 
 router = routers.DefaultRouter()
-# router.register('subscriptions', SubscribeViewSet, basename='subscribe')
 
 urlpatterns = [
     path(
