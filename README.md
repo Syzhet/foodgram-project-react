@@ -1,4 +1,4 @@
-![Build Status](https://github.com/Syzhet/foodgram-project-react/actions/workflows/Django-app%20workflow/badge.svg)](https://github.com/syzhet/foodgram-project-react/actions/workflows/foodgram_workflow.yml)
+![Build Status](https://github.com/Syzhet/foodgram-project-react/actions/workflows/Django-app%20workflow/badge.svg)](https://github.com/Syzhet/foodgram-project-react/actions/workflows/foodgram.yml)
 
 ## Стек технологий 
 
@@ -16,51 +16,52 @@ Foodgram это онлайн-ресурс для публикации рецеп
 
 # Установка проекта локально
 Склонировать репозиторий на локальную машину:
-'''sh
+```sh
 git clone https://github.com/Syzhet/foodgram-project-react.git
 cd foodgram-project-react
-'''
+```
 Cоздать и активировать виртуальное окружение (проект разрабатывался на версии [python-3.8.2](https://www.python.org/downloads/release/python-382/)):
-'''sh
+```sh
 python3 -m venv venv
 source venv/bin/activate
-'''
-Cоздайте файл .env в директории с файлом age.py содержанием:
-SECRET_KEY=секретный ключ django
-DB_ENGINE=django.db.backends.postgresql
-DB_NAME=postgres
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
-DB_HOST=db
-DB_PORT=5432
+```
+Cоздайте файл .env в директории с файлом manaage.py содержанием:
+- SECRET_KEY=секретный ключ django
+- DB_ENGINE=django.db.backends.postgresql
+- DB_NAME=имя базы
+- POSTGRES_USER=имя пользователя базы
+- POSTGRES_PASSWORD=пароль от базы
+- DB_HOST=название контейнера в котором запускается база
+- DB_PORT=5432
+
 Перейти в директирию и установить зависимости из файла requirements.txt:
-'''sh
+```sh
 cd backend/foodgram/
 pip install -r requirements.txt
-'''
+```
 Выполните миграции:
-'''sh
+```sh
 python manage.py migrate
-'''
+```
 Запустите сервер:
-'''sh
+```sh
 python manage.py runserver
-'''
+```
 
 # Запуск проекта в Docker контейнере
 Установите Docker и docker-compose
-'''sh
+```sh
 sudo apt install docker.io 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-'''
+```
 Параметры запуска описаны в файлах docker-compose.yml и nginx.conf которые находятся в директории infra/.
 При необходимости добавьте/измените адреса проекта в файле nginx.conf
 
 Запустите docker compose:
-'''sh
+```sh
 sudo docker-compose up -d
-'''
+```
 
 После сборки появляются 3 контейнера:
 
