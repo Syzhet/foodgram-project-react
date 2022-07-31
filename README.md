@@ -89,8 +89,8 @@ docker-compose exec backend python manage.py collectstatic --noinput
 '''
 
 ## Адрес сайта 
-http://84.201.176.57/
-http://syzhet.ddns.net/
+- http://84.201.176.57/
+- http://syzhet.ddns.net/
 
 ## Документация API
 http://84.201.176.57/api/docs/
