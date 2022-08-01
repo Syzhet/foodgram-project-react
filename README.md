@@ -82,28 +82,29 @@ sudo docker-compose up -d
 | nginx | контейнер web-сервера nginx |
 
 Примените миграции:
-'''sh
+```sh
 sudo docker-compose exec backend python manage.py migrate
-'''
+```
 Загрузите ингредиенты:
-'''sh
+```sh
 docker-compose exec backend python manage.py load_csv_ingredients
-'''
+```
 Создайте администратора:
-'''sh
+```sh
 docker-compose exec backend python manage.py createsuperuser
-'''
+```
 Соберите статику:
-'''sh
+```sh
 docker-compose exec backend python manage.py collectstatic --noinput
-'''
+```
 
 ## Адрес сайта 
 - http://84.201.176.57/
 - http://syzhet.ddns.net/
 
 ## Документация API
-http://84.201.176.57/api/docs/
+- http://84.201.176.57/api/docs/
+- http://syzhet.ddns.net/api/docs/
 
 ## Авторы проекта
 
