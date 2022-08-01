@@ -22,7 +22,7 @@ cd foodgram-project-react
 ```
 Cоздать и активировать виртуальное окружение:
 ```sh
-python3 -m venv venv
+python -m venv venv
 source venv/bin/activate
 ```
 Cоздайте файл .env в директории с файлом manaage.py содержанием:
