@@ -7,7 +7,7 @@ from django.db import IntegrityError
 from recipes.models import Tag
 
 
-class CommandTag(BaseCommand):
+class Command(BaseCommand):
     help = ('Класс для автоматического заполненеия данных  тэгах,'
             'Из CSV файла расположенного в папке data на уровне проекта'
             )

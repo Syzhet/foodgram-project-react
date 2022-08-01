@@ -81,7 +81,7 @@ jobs:
             sudo docker-compose exec -T backend python manage.py makemigrations
             sudo docker-compose exec -T backend python manage.py migrate
             sudo docker-compose exec -T backend python manage.py load_csv_ingredients
-            sudo docker-compose exec -T backend python manage.py load_csv_tags
+            sudo docker-compose exec -T backend python manage.py csv_tags
             sudo docker-compose exec -T backend python manage.py collectstatic --no-input
   send_message:
     runs-on: ubuntu-latest
