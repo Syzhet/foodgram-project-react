@@ -89,10 +89,6 @@ sudo docker-compose exec backend python manage.py migrate
 '''sh
 docker-compose exec backend python manage.py load_csv_ingredients
 '''
-Загрузите тэги:
-'''sh
-docker-compose exec backend python manage.py load_csv_tags
-'''
 Создайте администратора:
 '''sh
 docker-compose exec backend python manage.py createsuperuser
