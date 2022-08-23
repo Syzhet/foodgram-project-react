@@ -2,7 +2,6 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient, APITestCase
-
 from users.models import CustomUser, SubscribeModel
 
 CREATE_USER_DICT = dict(

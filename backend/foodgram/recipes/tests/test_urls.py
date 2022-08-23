@@ -3,11 +3,10 @@ import tempfile
 
 from django.conf import settings
 from django.urls import reverse
-from rest_framework import status
-from rest_framework.test import APIClient, APITestCase, override_settings
-
 from recipes.models import (Favourites, Ingredient, IngredientRecipe, Recipe,
                             ShoppingList, Tag)
+from rest_framework import status
+from rest_framework.test import APIClient, APITestCase, override_settings
 from users.models import CustomUser
 
 TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
