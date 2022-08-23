@@ -28,10 +28,10 @@ jobs:
     - name: Test with unittest
       run: |
         cd backend/foodgram/
-        rm .env
         touch .env
         echo DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }} >> .env
-        python manage.py test   
+        python manage.py test
+        rm .env   
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
