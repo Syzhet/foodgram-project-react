@@ -62,6 +62,12 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
+# Локальное тестирование проекта
+Из директории с файлом manage.py выполнить команду:
+```sh
+python manage.py test
+```
+
 # Запуск проекта в Docker контейнере
 Установите Docker и docker-compose
 ```sh

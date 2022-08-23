@@ -1,7 +1,8 @@
 from django.contrib.auth.hashers import make_password
 from djoser.serializers import UserSerializer
-from recipes.addserializers import BaseRecipeDataSerializer
 from rest_framework import serializers
+
+from recipes.addserializers import BaseRecipeDataSerializer
 
 from .models import CustomUser, SubscribeModel
 
