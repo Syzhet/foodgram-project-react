@@ -30,6 +30,8 @@ jobs:
         cd backend/foodgram/
         touch .env
         echo DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }} >> .env
+        echo DB_ENGINE=${{ secrets.TEST_DB_ENGINE }} >> .env
+        echo DB_NAME=${{ secrets.TEST_DB_NAME }} >> .env
         python manage.py test
         rm .env   
   build_and_push_to_docker_hub:
