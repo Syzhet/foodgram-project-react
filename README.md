@@ -108,12 +108,7 @@ docker-compose exec backend python manage.py createsuperuser
 docker-compose exec backend python manage.py collectstatic --noinput
 ```
 
-## Адрес сайта 
-- http://84.201.176.57/
-- http://syzhet.ddns.net/
-
-
-## Авторы проекта
+## Автор проекта
 
 - [Ионов А.В.](https://github.com/Syzhet) - Python разработчик. Разработал backend для проекта.
 
