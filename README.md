@@ -112,12 +112,9 @@ docker-compose exec backend python manage.py collectstatic --noinput
 - http://84.201.176.57/
 - http://syzhet.ddns.net/
 
-## Документация API
-- http://84.201.176.57/api/docs/
-- http://syzhet.ddns.net/api/docs/
 
 ## Авторы проекта
 
 - [Ионов А.В.](https://github.com/Syzhet) - Python разработчик. Разработал backend для проекта.
-- [Яндекс.Практикум](https://practicum.yandex.ru/) Фронтенд для сервиса Foodgram.
+
 
